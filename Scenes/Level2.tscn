@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scenes/Launcher.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Arrivee.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Void.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Images/Levels/Niveau2.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Bloc_Boing.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Bloc.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Bloc_Turbo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Goal_Lights.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sons/Selection_Menu.wav" type="AudioStream" id=10]
+[ext_resource path="res://Images/light.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/6Lights.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Sons/Music.wav" type="AudioStream" id=13]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.0232558, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.168605, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.0604027 )
+colors = PoolColorArray( 0.949704, 0.896075, 0.129842, 1, 1, 1, 1, 1 )
+
+[node name="Level2" type="Node2D"]
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( 571, 106 )
+build_mode = 1
+polygon = PoolVector2Array( 188.24, 404.556, 465.739, 403.612, 466.683, 483.842, 189.632, 484.981 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( 672, -74 )
+build_mode = 1
+polygon = PoolVector2Array( 425, 569, 425.177, 635.25, 683, 640, 684, 575 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( -159, -964 )
+scale = Vector2( 1.26495, 1.6479 )
+build_mode = 1
+polygon = PoolVector2Array( 863.671, 624.402, 863.328, 671.477, 876.087, 671.758, 877.749, 683.239, 881.737, 690.128, 871.101, 701.416, 863.456, 720.807, 857.141, 751.679, 859.8, 768.263, 849.496, 797.094, 833.874, 797.094, 834.446, 845.128, 931.153, 844.913, 930.472, 797.379, 894.107, 797.131, 917.032, 773.161, 924.938, 755.563, 924.147, 740.594, 912.289, 709.646, 925.728, 685.372, 926.124, 672.325, 960.117, 672.022, 960.908, 624.402 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( -296, -12 )
+scale = Vector2( 1.08902, 0.983871 )
+build_mode = 1
+polygon = PoolVector2Array( 972.908, 240.802, 972.655, 196.015, 625.107, 196.684, 626.199, 241.406 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( -1284, 208 )
+scale = Vector2( 2.22181, 1 )
+polygon = PoolVector2Array( 648.569, 202, 663.422, 176, 663.031, 54.9727, 622.353, -31.8394, 612.986, -38.9746, 595.459, 8, 595.459, 204 )
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( -214, -181.596 )
+scale = Vector2( 1, 2.03218 )
+polygon = PoolVector2Array( 709.653, 253.598, 709.944, 277.868, 974.881, 277.982, 974.41, 253.83 )
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( -372, 244 )
+polygon = PoolVector2Array( 626.884, 190.854, 809.08, 191.755, 811, 451, 734, 364, 627, 361 )
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Bloc" parent="Blocks" instance=ExtResource( 7 )]
+position = Vector2( 596.026, 552.468 )
+
+[node name="Bloc_Boing" parent="Blocks" instance=ExtResource( 6 )]
+position = Vector2( 252.574, 312.364 )
+
+[node name="Bloc_Turbo" parent="Blocks" instance=ExtResource( 8 )]
+position = Vector2( 839.63, 278.148 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="Sprites"]
+position = Vector2( 640, 360 )
+z_index = -10
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Electricity" type="CPUParticles2D" parent="Sprites"]
+position = Vector2( 953.281, 399.887 )
+amount = 20
+lifetime = 5.0
+explosiveness = 0.95
+texture = ExtResource( 11 )
+emission_shape = 2
+emission_rect_extents = Vector2( 40, 1 )
+direction = Vector2( 0, 1 )
+spread = 70.16
+gravity = Vector2( 0, 150 )
+initial_velocity = 150.0
+scale_amount = 0.01
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+
+[node name="6Lights" parent="Sprites" instance=ExtResource( 12 )]
+position = Vector2( 895.643, 548.206 )
+
+[node name="6Lights2" parent="Sprites" instance=ExtResource( 12 )]
+position = Vector2( 229.167, 56.346 )
+rotation = 3.14159
+
+[node name="Goal_Lights" parent="Sprites" instance=ExtResource( 9 )]
+position = Vector2( 1168.18, 463.841 )
+
+[node name="Launcher" parent="." instance=ExtResource( 1 )]
+position = Vector2( 56, 99 )
+
+[node name="Arrivee" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1206.04, 453.91 )
+
+[node name="Void" parent="." instance=ExtResource( 3 )]
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="Welcome" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 640, 360 )
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 640, 360 )
+stream = ExtResource( 13 )
+volume_db = -5.0
+autoplay = true

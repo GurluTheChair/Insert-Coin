@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Images/light.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/6Lights.gd" type="Script" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/light.png-9bf9266ff9311093ae7679958656d74b.stex"
+
+[node name="6Lights" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -98, 0 )
+texture = SubResource( 1 )
+texture_scale = 0.1
+color = Color( 0.839216, 0.776471, 0.121569, 0.266667 )
+energy = 3.0
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( -58, 0 )
+enabled = false
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 0, 1, 0.109804, 0.266667 )
+energy = 3.0
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( -18, 0 )
+enabled = false
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 0, 0.976471, 1, 0.266667 )
+energy = 3.0
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( 18, 0 )
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 0.839216, 0.776471, 0.121569, 0.266667 )
+energy = 3.0
+
+[node name="Light2D5" type="Light2D" parent="."]
+position = Vector2( 58, 0 )
+enabled = false
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 0, 1, 0.109804, 0.266667 )
+energy = 3.0
+
+[node name="Light2D6" type="Light2D" parent="."]
+position = Vector2( 98, 0 )
+enabled = false
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 0, 0.976471, 1, 0.266667 )
+energy = 3.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

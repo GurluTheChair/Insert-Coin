@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Images/light.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+func _on_Timer_timeout():
+	get_node(\"Light2D\").enabled = !get_node(\"Light2D\").enabled
+	get_node(\"Light2D2\").enabled = !get_node(\"Light2D2\").enabled
+	get_node(\"Light2D3\").enabled = !get_node(\"Light2D3\").enabled
+	get_node(\"Light2D4\").enabled = !get_node(\"Light2D4\").enabled
+	get_node(\"Light2D5\").enabled = !get_node(\"Light2D5\").enabled
+	get_node(\"Light2D6\").enabled = !get_node(\"Light2D6\").enabled
+	
+"
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/light.png-9bf9266ff9311093ae7679958656d74b.stex"
+
+[node name="Goal_Lights" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -36.7401, -16.7287 )
+enabled = false
+texture = SubResource( 2 )
+texture_scale = 0.1
+color = Color( 1, 0.913725, 0, 0.266667 )
+energy = 1.67
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( -3.24008, -16.7287 )
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 1, 0.913725, 0, 0.266667 )
+energy = 1.67
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 29.4499, -18.7287 )
+enabled = false
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 1, 0.913725, 0, 0.266667 )
+energy = 1.67
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( -35.7401, 12.2713 )
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 1, 0.913725, 0, 0.266667 )
+energy = 1.67
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D5" type="Light2D" parent="."]
+position = Vector2( -2.24008, 12.2713 )
+enabled = false
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 1, 0.913725, 0, 0.266667 )
+energy = 1.67
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Light2D6" type="Light2D" parent="."]
+position = Vector2( 30.2599, 14.2713 )
+texture = ExtResource( 1 )
+texture_scale = 0.1
+color = Color( 1, 0.913725, 0, 0.266667 )
+energy = 1.67
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

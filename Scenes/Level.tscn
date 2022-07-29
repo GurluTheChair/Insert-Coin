@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Launcher.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Void.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Images/Levels/Niveau1.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Bloc.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Arrivee.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sons/Selection_Menu.wav" type="AudioStream" id=7]
+[ext_resource path="res://Images/UI/Note.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Goal_Lights.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Images/light.png" type="Texture" id=10]
+[ext_resource path="res://Sons/Music.wav" type="AudioStream" id=11]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Tuto"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.345098, 0.345098, 0.345098, 1 ), Color( 1, 1, 1, 1 ), Color( 0.345098, 0.345098, 0.345098, 1 ), Color( 1, 1, 1, 1 ), Color( 0.345098, 0.345098, 0.345098, 1 ), Color( 0.682353, 0.682353, 0.682353, 1 ) ]
+}
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.0232558, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.168605, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.0604027 )
+colors = PoolColorArray( 0.949704, 0.896075, 0.129842, 1, 1, 1, 1, 1 )
+
+[node name="Level" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource( 6 )]
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+build_mode = 1
+polygon = PoolVector2Array( 185.815, 315.519, 356.248, 314.77, 435.658, 388.187, 434.883, 549.933, 401.727, 575.626, 177.836, 575.914, 177.087, 329.442 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Terrain/StaticBody2D"]
+position = Vector2( 2, 1.5 )
+build_mode = 1
+polygon = PoolVector2Array( 701.03, 598.508, 701.103, 680.426, 1333.38, 680.028, 1333.69, 598.508 )
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Bloc" parent="Blocks" instance=ExtResource( 4 )]
+position = Vector2( 896.613, 260.37 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite" parent="Sprites"]
+position = Vector2( 640, 360 )
+z_index = -10
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tuto" type="Sprite" parent="Sprites"]
+modulate = Color( 0.616374, 0.616374, 0.616374, 1 )
+position = Vector2( 233.415, 580.866 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/Tuto"]
+autoplay = "Tuto"
+method_call_mode = 1
+anims/Tuto = SubResource( 1 )
+
+[node name="Electricity" type="CPUParticles2D" parent="Sprites"]
+position = Vector2( 734.528, 370.544 )
+amount = 20
+lifetime = 5.0
+explosiveness = 0.95
+texture = ExtResource( 10 )
+emission_shape = 2
+emission_rect_extents = Vector2( 40, 1 )
+direction = Vector2( 0, 1 )
+spread = 70.16
+gravity = Vector2( 0, 150 )
+initial_velocity = 150.0
+scale_amount = 0.01
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
+
+[node name="Goal_Lights" parent="Sprites" instance=ExtResource( 9 )]
+position = Vector2( 1145.07, 500.253 )
+
+[node name="Launcher" parent="." instance=ExtResource( 1 )]
+position = Vector2( 224.86, 200.818 )
+
+[node name="Arrivee" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1179.51, 558.172 )
+
+[node name="Void" parent="." instance=ExtResource( 2 )]
+
+[node name="Welcome" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 640, 360 )
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 640, 360 )
+stream = ExtResource( 11 )
+volume_db = -5.0
+autoplay = true

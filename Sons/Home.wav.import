@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Home.wav-657d68d2ba04f274a666dd8706f92faa.sample"
+
+[deps]
+
+source_file="res://Sons/Home.wav"
+dest_files=[ "res://.import/Home.wav-657d68d2ba04f274a666dd8706f92faa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

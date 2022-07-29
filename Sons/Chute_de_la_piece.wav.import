@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Chute_de_la_piece.wav-c7afb3c3c8812a31898d0aece31c641f.sample"
+
+[deps]
+
+source_file="res://Sons/Chute_de_la_piece.wav"
+dest_files=[ "res://.import/Chute_de_la_piece.wav-c7afb3c3c8812a31898d0aece31c641f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

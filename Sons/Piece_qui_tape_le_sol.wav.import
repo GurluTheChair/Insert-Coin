@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Piece_qui_tape_le_sol.wav-f415ff58c387a9f40c0eb73dd6252f5d.sample"
+
+[deps]
+
+source_file="res://Sons/Piece_qui_tape_le_sol.wav"
+dest_files=[ "res://.import/Piece_qui_tape_le_sol.wav-f415ff58c387a9f40c0eb73dd6252f5d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,106 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Images/BlocRessort.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Bloc_Boing.gd" type="Script" id=2]
+[ext_resource path="res://Images/light.png" type="Texture" id=3]
+[ext_resource path="res://Images/Animations/Clignote.tres" type="Animation" id=4]
+[ext_resource path="res://Sons/tremplin.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sons/bloc_pose.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sons/impossible.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sons/selection_bloc.wav" type="AudioStream" id=8]
+[ext_resource path="res://Images/Animations/Indicate.tres" type="Animation" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 44.3014, 18.5996 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 46, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 44.138, 24.1387 )
+
+[node name="Bloc_Boing" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource( 2 )
+
+[node name="Effect" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -10 )
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.51
+texture = ExtResource( 3 )
+direction = Vector2( 0, -1 )
+spread = 80.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 200.0
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+scale_amount = 0.01
+color = Color( 0, 0.788235, 1, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+z_index = 5
+texture = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+autoplay = "Clignote"
+anims/Clignote = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5.50009 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+input_pickable = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -15 )
+shape = SubResource( 2 )
+
+[node name="Nope" type="Area2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nope"]
+shape = SubResource( 3 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Pick" type="Node2D" parent="."]
+
+[node name="pick" type="AudioStreamPlayer2D" parent="Pick"]
+stream = ExtResource( 8 )
+volume_db = 3.0
+
+[node name="put" type="AudioStreamPlayer2D" parent="Pick"]
+stream = ExtResource( 6 )
+volume_db = 3.0
+
+[node name="cant" type="AudioStreamPlayer2D" parent="Pick"]
+stream = ExtResource( 7 )
+volume_db = 3.0
+
+[node name="Indicate" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.833393 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Indicate"]
+autoplay = "Indicate"
+anims/Indicate = ExtResource( 9 )
+
+[connection signal="input_event" from="." to="." method="_on_Boing_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Bloc_Boing_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Bloc_Boing_mouse_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

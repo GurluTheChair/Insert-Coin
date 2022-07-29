@@ -1,0 +1,151 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Images/UI/Go.png" type="Texture" id=1]
+[ext_resource path="res://Images/UI/Retour.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=3]
+[ext_resource path="res://Images/UI/GameOver.png" type="Texture" id=4]
+[ext_resource path="res://Images/UI/Victory.png" type="Texture" id=5]
+[ext_resource path="res://Images/UI/Survol/quit.png" type="Texture" id=6]
+[ext_resource path="res://Images/UI/Survol/again.png" type="Texture" id=7]
+[ext_resource path="res://Images/UI/Survol/next.png" type="Texture" id=8]
+[ext_resource path="res://Images/UI/Survol/go.png" type="Texture" id=9]
+[ext_resource path="res://Images/UI/Survol/restart.png" type="Texture" id=10]
+[ext_resource path="res://Sons/Chute_de_la_piece.wav" type="AudioStream" id=11]
+[ext_resource path="res://Images/UI/Survol/home.png" type="Texture" id=12]
+[ext_resource path="res://Images/UI/Home.png" type="Texture" id=13]
+[ext_resource path="res://Images/UI/Survol/resurect.png" type="Texture" id=14]
+[ext_resource path="res://Sons/Home.wav" type="AudioStream" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 95.534, 64.4023 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 126.955, 91.9854 )
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GO" type="TextureButton" parent="Control"]
+margin_left = 1070.0
+margin_top = 35.0
+margin_right = 1230.0
+margin_bottom = 150.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="STOP" type="TextureButton" parent="Control"]
+visible = false
+margin_left = 1070.0
+margin_top = 35.0664
+margin_right = 1230.0
+margin_bottom = 150.066
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 10 )
+
+[node name="HOME" type="TextureButton" parent="Control"]
+margin_left = 51.0
+margin_top = 34.0
+margin_right = 140.0
+margin_bottom = 96.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 13 )
+texture_hover = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Win" type="TextureRect" parent="Control"]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="Control/Win"]
+margin_left = 586.327
+margin_top = 426.327
+margin_right = 697.327
+margin_bottom = 535.327
+mouse_default_cursor_shape = 2
+texture_hover = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Again" type="TextureButton" parent="Control/Win"]
+margin_left = 466.786
+margin_top = 426.327
+margin_right = 580.786
+margin_bottom = 535.327
+mouse_default_cursor_shape = 2
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="Control/Win"]
+margin_left = 702.08
+margin_top = 425.313
+margin_right = 813.08
+margin_bottom = 535.313
+mouse_default_cursor_shape = 2
+texture_hover = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lose" type="TextureRect" parent="Control"]
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = ExtResource( 4 )
+
+[node name="Restart" type="TextureButton" parent="Control/Lose"]
+margin_left = 480.963
+margin_top = 464.616
+margin_right = 820.963
+margin_bottom = 663.616
+mouse_default_cursor_shape = 2
+texture_hover = ExtResource( 14 )
+
+[node name="Home" type="AudioStreamPlayer2D" parent="Control/Lose/Restart"]
+stream = ExtResource( 15 )
+
+[node name="Kill" type="AudioStreamPlayer" parent="Control/Lose"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 97.1079, 64.5902 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1151.64, 92.1733 )
+shape = SubResource( 2 )
+
+[connection signal="pressed" from="Control/GO" to="." method="_on_GO_pressed"]
+[connection signal="pressed" from="Control/STOP" to="." method="_on_STOP_pressed"]
+[connection signal="pressed" from="Control/HOME" to="." method="_on_HOME_pressed"]
+[connection signal="pressed" from="Control/Win/Next" to="." method="_on_Next_pressed"]
+[connection signal="pressed" from="Control/Win/Again" to="." method="_on_Again_pressed"]
+[connection signal="pressed" from="Control/Win/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Control/Lose/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]

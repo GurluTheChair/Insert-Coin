@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Arrivee.gd" type="Script" id=1]
+[ext_resource path="res://Images/light.png" type="Texture" id=2]
+[ext_resource path="res://Sons/Victoire.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 100, 40 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 140, 80 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.180233, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.325581, 0.304968 ), 0.0, 0.0, 0, 0, Vector2( 0.505814, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.680233, 0.314059 ), 0.0, 0.0, 0, 0, Vector2( 0.848837, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Arrivee" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Nope" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nope"]
+shape = SubResource( 2 )
+
+[node name="Confetti" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 5.0
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 50, 30 )
+direction = Vector2( 0, -1 )
+spread = 30.0
+gravity = Vector2( 0, 110 )
+initial_velocity = 200.0
+scale_amount = 0.01
+scale_amount_curve = SubResource( 3 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="Win" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

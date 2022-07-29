@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Victoire.wav-ec7e5fe3ba358344459f87f189124afb.sample"
+
+[deps]
+
+source_file="res://Sons/Victoire.wav"
+dest_files=[ "res://.import/Victoire.wav-ec7e5fe3ba358344459f87f189124afb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
